@@ -1,0 +1,77 @@
+﻿@page
+@model OrderProcessing.Pages.Customers.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    .table, .col-sm-2 {
+        padding-top: 1em;
+    }
+</style>
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.AName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.AName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.State)
+        </dd>
+
+        
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer.Orders)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                </tr>
+                @foreach (var item in Model.Customer.Orders)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Customer.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
